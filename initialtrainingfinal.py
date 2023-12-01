@@ -219,7 +219,7 @@ while i<1:
     
     print(loss.item())
     
-    with open('model-03.pkl', 'wb') as f:
+    with open('model-01.pkl', 'wb') as f:
         pickle.dump(model, f)
     print('model saved')
     i=i+1
