@@ -198,7 +198,7 @@ while i<100:    #can set this to as many iterations as you want
     
     model = GPTLanguageModel(vocab_size)
     print('loading model parameters...')
-    with open('model-02.pkl', 'rb') as f:
+    with open('model-01.pkl', 'rb') as f:
         model = pickle.load(f)
     print('loaded model parameters successfully')
     m = model.to(device)
@@ -222,7 +222,7 @@ while i<100:    #can set this to as many iterations as you want
     
     print(loss.item())
     
-    with open('model-02.pkl', 'wb') as f:
+    with open('model-01.pkl', 'wb') as f:
         pickle.dump(model, f)
     print('model saved')
     i=i+1
