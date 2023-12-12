@@ -166,14 +166,14 @@ with open('model-01.pkl', 'rb') as f:
 print('loaded model parameters successfully')
 m = model.to(device)
 
-def calculate_sai(embedding_prompt, embedding_response):
+def calculate_eai(embedding_prompt, embedding_response):
     embedding_prompt_2d = embedding_prompt.reshape(-1, embedding_prompt.shape[-1])
     embedding_response_2d = embedding_response.reshape(-1, embedding_response.shape[-1])
 
     similarity_scores = cosine_similarity(embedding_prompt_2d, embedding_response_2d)
 
-    sai = np.mean(similarity_scores)
-    return sai
+    eai = np.mean(similarity_scores)
+    return eai
 
 while True:
     prompt = input("Prompt:\n")
@@ -187,11 +187,11 @@ while True:
     embedding_prompt = m.token_embedding_table(context.unsqueeze(0)).detach().numpy()
     embedding_response = m.token_embedding_table(torch.tensor(generated_chars, dtype=torch.long, device=device)).detach().numpy()
 
-    # Calculate SAI
-    sai_score = calculate_sai(embedding_prompt, embedding_response)
+    # Calculate EAI
+    eai_score = calculate_eai(embedding_prompt, embedding_response)
 
     # Display results
     print(f'Completion:\n{generated_text}')
-    print(f'SAI Score: {sai_score}')
+    print(f'EAI Score: {eai_score}')
     
     
