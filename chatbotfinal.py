@@ -175,6 +175,8 @@ def calculate_eai(embedding_prompt, embedding_response):
     eai = np.mean(similarity_scores)
     return eai
 
+cumulative_sai = 0
+k=1
 while True:
     prompt = input("Prompt:\n")
     context = torch.tensor(encode(prompt), dtype=torch.long, device=device)
@@ -187,11 +189,15 @@ while True:
     embedding_prompt = m.token_embedding_table(context.unsqueeze(0)).detach().numpy()
     embedding_response = m.token_embedding_table(torch.tensor(generated_chars, dtype=torch.long, device=device)).detach().numpy()
 
-    # Calculate EAI
-    eai_score = calculate_eai(embedding_prompt, embedding_response)
+    # Calculate SAI
+    sai_score = calculate_sai(embedding_prompt, embedding_response)
 
+    # Calculating rolling SAI average
+    cumulative_sai = cumulative_sai + sai_score
+    sai_average = cumulative_sai/k
+    k=k+1
     # Display results
     print(f'Completion:\n{generated_text}')
-    print(f'EAI Score: {eai_score}')
-    
+    print(f'SAI Score: {sai_score}')
+    print(f'Rolling SAI average: {sai_average}')
     
