@@ -197,6 +197,7 @@ while True:
     sai_average = cumulative_sai/k
     k=k+1
     # Display results
+    print(f'Response number: {k-1}')
     print(f'Completion:\n{generated_text}')
     print(f'SAI Score: {sai_score}')
     print(f'Rolling SAI average: {sai_average}')
