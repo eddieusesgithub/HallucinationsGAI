@@ -69,5 +69,5 @@ def calculate_metrics_from_csv(csv_file):
         else:
             print(f"Skipping pair {index}: Unable to tokenize prompt or response.")
 
-csv_file = "/Users/eddielee/Desktop/UNI/year3/LLM/articles.csv"
+csv_file = "/path/to/directory/articles.csv"
 calculate_metrics_from_csv(csv_file)
