@@ -10,8 +10,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 device = torch.device('cpu')
 print(device)
 
-block_size = 64     #hyperparameters
-batch_size = 128
+block_size = 128     #hyperparameters
+batch_size = 64
 max_iters = 300
 learning_rate = 3e-4
 eval_iters = 100
