@@ -152,11 +152,11 @@ while i<100:    #can set this to as many iterations as you want
     class GPTLanguageModel(nn.Module):
         def __init__(self, vocab_size):
             super().__init__()
-            self.token_embedding_table = nn.Embedding(vocab_size, n_embd)        #decoders
+            self.token_embedding_table = nn.Embedding(vocab_size, n_embd)        
             self.position_embedding_table = nn.Embedding(block_size, n_embd)
             self.blocks = nn.Sequential(*[Block(n_embd, n_head = n_head) for _ in range(n_layer)])
-            self.ln_f = nn.LayerNorm(n_embd)       #final layer norm
-            self.lm_head = nn.Linear(n_embd, vocab_size)       #make it so softmax can work with the info
+            self.ln_f = nn.LayerNorm(n_embd)       
+            self.lm_head = nn.Linear(n_embd, vocab_size)  
             self.apply(self._init_weights)
             
         def _init_weights(self, module):
