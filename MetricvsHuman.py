@@ -107,6 +107,6 @@ def calculate_metrics_and_correlation(csv_file):
     print(f"BLEU Pearson correlation coefficient: {np.corrcoef(value_values, bleu_values)[0, 1]}")
     print(f"METEOR Pearson correlation coefficient: {np.corrcoef(value_values, meteor_values)[0, 1]}")
     print(f"EAI Pearson correlation coefficient: {np.corrcoef(value_values, eai_values)[0, 1]}")                                 
-csv_file = "/Users/eddielee/Desktop/UNI/year3/LLM/PR5.csv" 
+csv_file = "/path/to/directory/PR<n>.csv" 
 
 calculate_metrics_and_correlation(csv_file)
