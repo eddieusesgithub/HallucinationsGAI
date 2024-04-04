@@ -11,14 +11,14 @@ device = torch.device('cpu')
 print(device)
 
 block_size = 64     #hyperparameters
-batch_size = 32
+batch_size = 128
 max_iters = 300
 learning_rate = 3e-4
 eval_iters = 100
 
 n_embd = 384
-n_head = 8
-n_layer = 8
+n_head = 32
+n_layer = 32
 dropout = 0.2
 
 with open("/path/to/directory/vocab.txt", 'r', encoding = 'utf-8') as f:
