@@ -15,8 +15,8 @@ i=0
 start_time = time.time()
 while i<1:
 
-    device = torch.device('mps') #these 2 lines are dependent on your device. A windows device may run on cuda not mps
-    device = 'mps' if torch.backends.mps.is_built() else '.cpu' #we use the gpu cores
+    device = torch.device('mps') 
+    device = 'mps' if torch.backends.mps.is_built() else '.cpu'
     print(device)
 
     block_size = 64     #hyperparameters
@@ -156,11 +156,11 @@ while i<1:
     class GPTLanguageModel(nn.Module):
         def __init__(self, vocab_size):
             super().__init__()
-            self.token_embedding_table = nn.Embedding(vocab_size, n_embd)        #decoders
+            self.token_embedding_table = nn.Embedding(vocab_size, n_embd)      
             self.position_embedding_table = nn.Embedding(block_size, n_embd)
             self.blocks = nn.Sequential(*[Block(n_embd, n_head = n_head) for _ in range(n_layer)])
-            self.ln_f = nn.LayerNorm(n_embd)       #final layer norm
-            self.lm_head = nn.Linear(n_embd, vocab_size)       #make it so softmax can work with the info
+            self.ln_f = nn.LayerNorm(n_embd)       
+            self.lm_head = nn.Linear(n_embd, vocab_size)    
             self.apply(self._init_weights)
             
         def _init_weights(self, module):
