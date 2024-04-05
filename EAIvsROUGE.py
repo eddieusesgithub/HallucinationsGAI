@@ -42,32 +42,31 @@ def calculate_rouge(prompt, response):
     
     return rouge_1_f1, rouge_2_f1, rouge_l_f1
 
-import pandas as pd
-
 def calculate_metrics_from_csv(csv_file):
     data = pd.read_csv(csv_file)
     
     for index, row in data.iterrows():
         prompt = row['article']
+        ideal = row['summary']
         summary = summarizer(prompt, max_length=250, min_length=100, do_sample=False)
         
-        prompt_tokens = word_tokenize(prompt)
+        ideal_tokens = word_tokenize(ideal)
         response_tokens = word_tokenize(summary[0]['summary_text'])
         
-        embedding_prompt = get_embeddings(prompt_tokens)
+        embedding_ideal = get_embeddings(ideal_tokens)
         embedding_response = get_embeddings(response_tokens)
         
-        if len(embedding_prompt) > 0 and len(embedding_response) > 0:
-            eai_score = calculate_eai(embedding_prompt, embedding_response)
-            rouge_value = calculate_rouge(prompt, summary[0]['summary_text'])
+        if len(embedding_ideal) > 0 and len(embedding_response) > 0:
+            eai_score = calculate_eai(embedding_ideal, embedding_response)
+            rouge_value = calculate_rouge(ideal, summary[0]['summary_text'])
             
-            print(f'Prompt: {prompt}')
-            print(f'Response: {summary[0]["summary_text"]}')
+            print(f'Ideal summary: {ideal}')
+            print(f'Generated summary: {summary[0]["summary_text"]}')
             print(f'EAI Score: {eai_score}')
             print(f'Rouge Score: {rouge_value}')
             print()
         else:
             print(f"Skipping pair {index}: Unable to tokenize prompt or response.")
 
-csv_file = "/path/to/directory/articles.csv"
+csv_file = "/Users/eddielee/Desktop/UNI/year3/LLM/articles.csv"
 calculate_metrics_from_csv(csv_file)
