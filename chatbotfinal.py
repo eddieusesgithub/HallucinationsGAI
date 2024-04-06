@@ -167,11 +167,12 @@ print('loaded model parameters successfully')
 m = model.to(device)
 
 def calculate_eai(embedding_prompt, embedding_response):
-    embedding_prompt_2d = embedding_prompt.reshape(-1, embedding_prompt.shape[-1])
-    embedding_response_2d = embedding_response.reshape(-1, embedding_response.shape[-1])
-
-    similarity_scores = cosine_similarity(embedding_prompt_2d, embedding_response_2d)
-
+    similarity_scores = []
+    for prompt_token in prompt_embeddings:
+        for response_token in response_embeddings:
+            similarity_score = cosine_similarity(prompt_token.reshape(1, -1), response_token.reshape(1, -1))
+            similarity_scores.append(similarity_score[0][0])
+    print(similarity_scores)
     eai = np.mean(similarity_scores)
     return eai
 
