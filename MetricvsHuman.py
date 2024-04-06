@@ -3,15 +3,15 @@ import pandas as pd
 import numpy as np
 
 from sklearn.metrics.pairwise import cosine_similarity
-from transformers import GPT2Tokenizer, GPT2Model
+from transformers import BertTokenizer, BertModel
 
 from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu
 from nltk.translate.meteor_score import meteor_score
 from nltk.tokenize import word_tokenize
 
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-model = GPT2Model.from_pretrained("gpt2")
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+model = BertModel.from_pretrained('bert-base-cased')
 
 def get_embeddings(tokens):
     embeddings = []
