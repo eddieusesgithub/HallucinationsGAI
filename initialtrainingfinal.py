@@ -26,8 +26,8 @@ while i<1:
     eval_iters = 100
 
     n_embd = 384
-    n_head = 32
-    n_layer = 32
+    n_head = 16
+    n_layer = 16
     dropout = 0.2
     
     with open("/path/to/directory/vocab.txt", 'r', encoding = 'utf-8') as f:    #I omit the directory to my personal computer
