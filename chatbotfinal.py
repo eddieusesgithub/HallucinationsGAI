@@ -199,7 +199,7 @@ while True:
     k=k+1
     # Display results
     print(f'Response number: {k-1}')
-    print(f'Completion:\n{generated_text}')
+    print(f'Response:\n{generated_text}')
     print(f'EAI Score: {eai_score}')
     print(f'Rolling EAI average: {eai_average}')
     
